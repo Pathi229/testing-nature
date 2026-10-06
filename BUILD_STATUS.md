@@ -1,5 +1,19 @@
 # Build status — 2026-10-06
 
+## Standalone travel follow-up — 2026-10-07
+
+- The `preview` EAS profile now explicitly sets `developmentClient: false`, internal distribution, a physical-device build, and `ios.buildConfiguration: Release`. App update checks are explicitly disabled. The development profile remains separate.
+- The current `@expo/eas-json` schema/accessor/resolver validated the complete configuration and resolved the expected standalone iOS Release values. Validation dependencies were installed only in `/tmp`; the application dependency manifest and lockfile were not changed.
+- A source copy under `/tmp` passed `expo prebuild --platform ios --no-install`. Generated AppDelegate loads `Bundle.main`'s `main.jsbundle` outside DEBUG; the generated project embeds JS/assets via `export:embed`, and skips bundling only in Debug by default. The real checkout's native folders, source, package manifest, and lockfile were not rewritten by prebuild. **CocoaPods installation and Xcode compilation were not performed.**
+- Apple autolinking again detected `WildfolioVisionModule` with its local podspec. Config introspection verified camera/photo/location permission descriptions and disabled updates. Production iOS JS/Hermes export passed with local fonts/navigation assets.
+- The Release bundling command `expo export:embed --platform ios --dev false --bytecode` also passed: it wrote `main.jsbundle` and copied 23 asset files. This validates bundle generation, not inclusion in an Xcode-compiled IPA. Online Expo Doctor passed **21/21 checks**.
+- TypeScript, lint, and all **22 tests (0 failed/skipped)** passed again, including real SQLite/disk reopening after source-cache deletion, save/deletion recovery, and portable restore validation. No app data/reset command was run. `wildfolio.db`, permanent image paths, app identifier/scheme, and schema version are unchanged. This workspace cannot inspect or preserve a phone journal itself; export/restore verification is required on the phone.
+- [STANDALONE_IPHONE.md](docs/STANDALONE_IPHONE.md) documents exact PowerShell build commands, ad hoc signing/device registration, installation, profile expiration, avoiding bundling overrides, journal preservation, bidirectional Expo Go/app backup migration, and a laptop-off/Airplane Mode cold-launch checklist.
+- No EAS login/project creation/device registration/signing/cloud build, purchase, or app publication was initiated. The configured preview still needs a real EAS project ID and a bundle identifier owned by the user's signing team before their first standalone build. Preserve that identity when upgrading an existing app with data.
+- **Still untested:** Swift/CocoaPods/Xcode compilation, a signed/installable IPA, device provisioning/expiration, actual bundled cold startup, permission dialogs, Vision outputs/cancellation, and journal migration/offline behavior on a real iPhone. Configuration/prebuild/JS tests do not certify everyday travel readiness.
+
+The original milestone report below describes the earlier implementation; use the follow-up guide for current standalone installation instructions.
+
 ## Implemented
 
 - React Native 0.86.3 / React 19.2.3 / Expo SDK 57.0.27 / TypeScript 6 app, Expo Router navigation, compatible npm lockfile, centralized temporary branding, and an original leaf app icon.
