@@ -4,6 +4,8 @@ A private nature-discovery journal built with React Native, Expo SDK 57, Expo Ro
 
 The design uses ivory, forest green, sage cards, and restrained clay accents. Change the temporary name and main copy in `src/branding.json`.
 
+For an installed iPhone app that travels without Metro or your laptop, follow [the standalone preview and journal migration guide](docs/STANDALONE_IPHONE.md). The preview profile explicitly uses Release, disables the development client, and embeds JavaScript/assets through the normal native build. No cloud build has been started.
+
 ## Choose your testing mode
 
 | Mode | Journal | Apple Vision cutouts/clues | Apple membership | Laptop normally needed to load JS? |

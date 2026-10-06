@@ -2,6 +2,8 @@
 
 These are manual tests to run on a physical device. None have been marked passed in this workspace. Use your own real nature photographs; automated fixtures never appear in the app.
 
+For exact standalone Windows build, installation, and Expo Go backup migration steps, follow [STANDALONE_IPHONE.md](STANDALONE_IPHONE.md) first. Keep the original journal until the installed preview's restored records and images pass the checks below.
+
 ## Choose the right app
 
 - **Expo Go:** free journal testing from Windows. Original photos work; the custom Vision module is absent. Confirm the fallback message is shown. The installed Expo Go version must support SDK 57.

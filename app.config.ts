@@ -9,6 +9,8 @@ const config: ExpoConfig = {
   icon: './assets/icon.png',
   orientation: 'default',
   userInterfaceStyle: 'light',
+  // Travel builds boot their embedded bundle, with no OTA launch/update dependency.
+  updates: { enabled: false },
   ios: { bundleIdentifier: 'com.wildfolio.journal', supportsTablet: true },
   android: { package: 'com.wildfolio.journal' },
   plugins: [
